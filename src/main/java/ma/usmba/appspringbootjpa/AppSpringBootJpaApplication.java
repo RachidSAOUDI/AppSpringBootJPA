@@ -32,7 +32,8 @@ public class AppSpringBootJpaApplication implements CommandLineRunner {
         System.out.println("Number of page : "+patiens.getNumber());
         List<Patient> content = patiens.getContent();
         Page<Patient> byMalade = patientRepository.findByMalade(true, PageRequest.of(0, 4));
-        byMalade.forEach(p->{
+        List<Patient>  patientList = patientRepository.chercherPatients("%s%", 40);
+        patientList.forEach(p->{
             System.out.println("============================");
             System.out.println(p.getId());
             System.out.println(p.getNom());
