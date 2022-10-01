@@ -49,7 +49,7 @@ public class AppSpringBootJpaApplication implements CommandLineRunner {
         }
         patient.setScore(870);
         patientRepository.save(patient);
-        patientRepository.deleteById(1L);
+//        patientRepository.deleteById(1L);
 
     }
 }
