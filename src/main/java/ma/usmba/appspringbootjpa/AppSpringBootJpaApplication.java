@@ -23,7 +23,7 @@ public class AppSpringBootJpaApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         for (int i=0; i<100; i++){
-            patientRepository.save(new Patient(null, "Hassan", new Date(), true, (int)(Math.random()*100)));
+            patientRepository.save(new Patient(null, "Hassan", new Date(), Math.random()>0.5?true:false, (int)(Math.random()*100)));
         }
 
         Page<Patient> patiens = patientRepository.findAll(PageRequest.of(1, 5));
@@ -31,7 +31,8 @@ public class AppSpringBootJpaApplication implements CommandLineRunner {
         System.out.println("Total Elements : "+patiens.getTotalElements());
         System.out.println("Number of page : "+patiens.getNumber());
         List<Patient> content = patiens.getContent();
-        content.forEach(p->{
+        List<Patient> byMalade = patientRepository.findByMalade(true);
+        byMalade.forEach(p->{
             System.out.println("============================");
             System.out.println(p.getId());
             System.out.println(p.getNom());
