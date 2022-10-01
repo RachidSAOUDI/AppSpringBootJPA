@@ -20,9 +20,10 @@ public class AppSpringBootJpaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        patientRepository.save(new Patient(null, "Hassan", new Date(), true, 56));
-        patientRepository.save(new Patient(null, "Mohammed", new Date(), false, 97));
-        patientRepository.save(new Patient(null, "Imane", new Date(), false, 210));
+        for (int i=0; i<100; i++){
+            patientRepository.save(new Patient(null, "Hassan", new Date(), true, (int)(Math.random()*100)));
+        }
+
         List<Patient>  patiens = patientRepository.findAll();
         patiens.forEach(p->{
             System.out.println("============================");
